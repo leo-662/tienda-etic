@@ -14,11 +14,12 @@
                 extend: {
                     colors: {
                         eticentro: {
-                            blue: '#0A3B95',
+                            blue: '#004B87', /* Azul corporativo estilo Uline */
                             lightblue: '#00A8EC',
-                            dark: '#081F4D',
-                            light: '#F4F7FC',
-                            accent: '#F25C05'
+                            dark: '#0A2540',
+                            light: '#F8FAFC',
+                            accent: '#E01A22', /* Rojo de destaque industrial */
+                            border: '#E2E8F0'
                         }
                     }
                 }
@@ -39,181 +40,147 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+        .uline-grid-border {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
     </style>
 </head>
-<body class="bg-eticentro-light text-slate-800 font-sans min-h-screen flex flex-col">
+<body class="bg-white text-slate-800 font-sans min-h-screen flex flex-col">
 
     <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-eticentro-blue text-white text-xs py-2 px-4 text-center font-medium tracking-wide z-50">
-        <span class="inline-block animate-pulse mr-2">🔥</span> 
-        ¡COMPRA AL MENUDEO Y MAYOREO! Descuentos automáticos al agregar más piezas. Envíos desde Hermosillo, Sonora.
+    <div class="bg-[#004B87] text-white text-xs py-2 px-4 text-center font-bold tracking-wide z-50 border-b border-white/10">
+        📦 SOLUCIONES INDUSTRIALES DE EMPAQUE Y ENVÍOS — SUCURSAL HERMOSILLO, SONORA
     </div>
 
-    <!-- MAIN NAVBAR -->
-    <header class="sticky top-0 bg-white shadow-md z-40 transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- MAIN NAVBAR (Uline Clean Aesthetic) -->
+    <header class="sticky top-0 bg-white border-b border-slate-200 shadow-sm z-40">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
             <!-- Logo / Brand -->
-            <a href="#" class="flex items-center space-x-3">
-                <!-- SVG Logo representing a label roll combined with letter 'E' -->
-                <div class="w-10 h-10 bg-eticentro-blue text-white rounded-lg flex items-center justify-center font-black text-xl shadow-md">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
+            <a href="#" class="flex items-center space-x-3 self-start md:self-auto">
+                <div class="w-12 h-12 bg-eticentro-blue text-white rounded flex items-center justify-center font-black text-2xl shadow-sm">
+                    <i class="fas fa-box-open"></i>
                 </div>
                 <div>
-                    <span class="text-xl font-black text-eticentro-blue block tracking-tight leading-none">ETI<span class="text-eticentro-lightblue">CENTRO</span></span>
-                    <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest block mt-0.5">Etiqueta & Empaque</span>
+                    <span class="text-2xl font-black text-eticentro-blue block tracking-tight leading-none">ETI<span class="text-eticentro-lightblue">CENTRO</span></span>
+                    <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest block mt-1">LÍDER EN ETIQUETAS Y EMPAQUES</span>
                 </div>
             </a>
 
             <!-- Search Bar (Desktop) -->
-            <div class="hidden md:flex flex-1 max-w-md mx-8">
-                <div class="relative w-full">
-                    <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar etiquetas, cintas, stretch film, bolsas..." class="w-full bg-slate-100 text-slate-800 pl-10 pr-4 py-2 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-eticentro-blue text-sm">
-                    <span class="absolute left-3 top-2.5 text-slate-400">
+            <div class="flex-1 max-w-xl mx-0 md:mx-8 w-full">
+                <div class="relative w-full flex">
+                    <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar etiquetas, cajas, stretch film, bolsas, flejes..." class="w-full bg-slate-50 text-slate-800 pl-10 pr-4 py-2.5 rounded-l-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-eticentro-blue focus:bg-white text-sm">
+                    <span class="absolute left-3.5 top-3.5 text-slate-400">
                         <i class="fas fa-search"></i>
                     </span>
+                    <button onclick="filterProducts()" class="bg-eticentro-blue hover:bg-eticentro-dark text-white font-bold px-6 py-2.5 rounded-r-lg text-sm transition-colors uppercase tracking-wider">
+                        Buscar
+                    </button>
                 </div>
             </div>
 
             <!-- Action Buttons -->
-            <div class="flex items-center space-x-4">
-                <a href="https://www.eticentrohermosillo.com/" target="_blank" class="hidden lg:flex items-center text-xs font-bold text-slate-600 hover:text-eticentro-blue transition-colors">
-                    <i class="fas fa-globe mr-1.5"></i> Sitio Web
+            <div class="flex items-center justify-between w-full md:w-auto gap-4 border-t md:border-t-0 pt-3 md:pt-0 border-slate-100">
+                <div class="text-xs text-slate-500 font-semibold hidden lg:block">
+                    <p><i class="fas fa-phone-alt text-eticentro-blue mr-1"></i> Soporte: 662 353 0191</p>
+                    <p class="mt-0.5"><i class="fas fa-map-marker-alt text-eticentro-blue mr-1"></i> Loma Linda, Hermosillo</p>
+                </div>
+
+                <a href="https://www.eticentrohermosillo.com/" target="_blank" class="flex items-center text-xs font-bold text-slate-600 hover:text-eticentro-blue transition-colors bg-slate-100 px-3 py-2 rounded-lg border border-slate-200">
+                    <i class="fas fa-globe mr-1.5"></i> Sitio Oficial
                 </a>
                 
                 <!-- Cart Button -->
-                <button onclick="toggleCart(true)" class="relative bg-eticentro-blue hover:bg-eticentro-dark text-white p-2.5 rounded-full transition-transform active:scale-95 flex items-center justify-center shadow-md">
+                <button onclick="toggleCart(true)" class="relative bg-eticentro-accent hover:bg-red-700 text-white px-4 py-2.5 rounded-lg transition-transform active:scale-95 flex items-center justify-center gap-2 shadow-sm">
                     <i class="fas fa-shopping-cart text-sm"></i>
-                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-eticentro-accent text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+                    <span class="font-bold text-xs uppercase tracking-wide">Pedido</span>
+                    <span id="cartCountBadge" class="bg-white text-eticentro-accent text-[10px] font-black px-1.5 py-0.5 rounded-full ml-1 hidden">0</span>
                 </button>
             </div>
         </div>
 
         <!-- Category Horizontal Navigation Bar -->
-        <nav class="bg-slate-50 border-t border-b border-slate-200 overflow-x-auto">
-            <div class="container mx-auto px-4 flex items-center space-x-1 whitespace-nowrap text-sm scrollbar-none py-1">
-                <button onclick="selectCategory('all')" id="catBtn-all" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 bg-eticentro-blue text-white">
-                    ⭐ Todos los Productos
+        <nav class="bg-slate-50 border-t border-slate-200 overflow-x-auto">
+            <div class="container mx-auto px-4 flex items-center space-x-1 whitespace-nowrap text-sm scrollbar-none py-2">
+                <button onclick="selectCategory('all')" id="catBtn-all" class="cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 bg-eticentro-blue text-white shadow-sm border border-transparent">
+                    📂 Todos los Productos
                 </button>
-                <button onclick="selectCategory('bundles')" id="catBtn-bundles" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 text-slate-600 hover:bg-slate-200">
+                <button onclick="selectCategory('bundles')" id="catBtn-bundles" class="cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 text-slate-700 hover:bg-slate-200 border border-slate-200 bg-white">
                     📦 Paquetes Emprendedor (Bundles)
                 </button>
-                <button onclick="selectCategory('etiquetas')" id="catBtn-etiquetas" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 text-slate-600 hover:bg-slate-200">
+                <button onclick="selectCategory('etiquetas')" id="catBtn-etiquetas" class="cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 text-slate-700 hover:bg-slate-200 border border-slate-200 bg-white">
                     🏷️ Etiquetas y Ribbons
                 </button>
-                <button onclick="selectCategory('empaque')" id="catBtn-empaque" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 text-slate-600 hover:bg-slate-200">
+                <button onclick="selectCategory('empaque')" id="catBtn-empaque" class="cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 text-slate-700 hover:bg-slate-200 border border-slate-200 bg-white">
                     🎗️ Empaque y Flejado
                 </button>
-                <button onclick="selectCategory('logistica')" id="catBtn-logistica" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 text-slate-600 hover:bg-slate-200">
+                <button onclick="selectCategory('logistica')" id="catBtn-logistica" class="cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 text-slate-700 hover:bg-slate-200 border border-slate-200 bg-white">
                     🪵 Logística e Industrial
                 </button>
-                <button onclick="selectCategory('promocionales')" id="catBtn-promocionales" class="cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 text-slate-600 hover:bg-slate-200">
-                    👕 Impresiones y Promos
+                <button onclick="selectCategory('promocionales')" id="catBtn-promocionales" class="cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 text-slate-700 hover:bg-slate-200 border border-slate-200 bg-white">
+                    👕 Promocionales e Imprenta
                 </button>
             </div>
         </nav>
     </header>
 
-    <!-- MOBILE SEARCH (Visible only on mobile) -->
-    <div class="md:hidden bg-white p-3 border-b border-slate-200 z-30">
-        <div class="relative w-full">
-            <input type="text" id="mobileSearchInput" oninput="filterProductsMobile()" placeholder="Buscar productos..." class="w-full bg-slate-100 pl-10 pr-4 py-2 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-eticentro-blue text-sm">
-            <span class="absolute left-3 top-2.5 text-slate-400">
-                <i class="fas fa-search"></i>
-            </span>
-        </div>
-    </div>
-
-    <!-- MAIN BANNER HERO / BUNDLES SHOWCASE -->
-    <section id="heroSection" class="bg-gradient-to-r from-eticentro-dark to-eticentro-blue text-white py-12 px-4 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="container mx-auto max-w-6xl relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+    <!-- HERO SECTION (Clean White/Grey Minimalist style instead of heavy dark backgrounds) -->
+    <section id="heroSection" class="bg-slate-50 border-b border-slate-200 py-10 px-4 relative overflow-hidden">
+        <div class="container mx-auto max-w-6xl relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
             <div class="lg:w-1/2 space-y-4 text-center lg:text-left">
-                <div class="inline-flex items-center gap-1.5 bg-eticentro-lightblue/30 text-eticentro-lightblue px-3 py-1 rounded-full text-xs font-bold border border-eticentro-lightblue/20">
-                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                    ¡Nuevo Catálogo 2025 Activo!
-                </div>
-                <h1 class="text-3xl sm:text-5xl font-black leading-tight">
-                    Todo para tus Envíos y <span class="text-eticentro-lightblue">Embalaje Industrial</span>
+                <span class="text-xs font-bold text-eticentro-blue uppercase tracking-widest block">EMBALAJE INDUSTRIAL & ENVÍOS PROFESIONALES</span>
+                <h1 class="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">
+                    Insumos de Empaque y Envío de <span class="text-eticentro-blue">Alta Disponibilidad</span>
                 </h1>
-                <p class="text-sm sm:text-lg text-slate-200 max-w-xl">
-                    Somos los especialistas en Hermosillo. Etiquetas autoadheribles, stretch film, flejes, tarimas y promocionales personalizados. Diseñado para potenciar las ventas de los emprendedores.
+                <p class="text-xs sm:text-sm text-slate-600 max-w-xl leading-relaxed">
+                    Suministramos a todo Hermosillo y Sonora. Encuentra rollos de etiquetas, stretch wrap, burbujas amortiguadoras, flejes de alta tensión, tarimas de exportación y promocionales corporativos con entrega rápida.
                 </p>
-                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-                    <button onclick="scrollToCatalog()" class="bg-eticentro-accent hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-lg text-sm flex items-center gap-2 transform hover:-translate-y-0.5">
-                        <i class="fas fa-store"></i> Explorar Catálogo
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+                    <button onclick="scrollToCatalog()" class="bg-eticentro-blue hover:bg-eticentro-dark text-white font-bold px-5 py-2.5 rounded text-xs transition-all shadow-sm uppercase tracking-wider">
+                        Ver Catálogo Completo
                     </button>
-                    <button onclick="selectCategory('bundles')" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-6 py-3 rounded-xl transition-all text-sm flex items-center gap-2">
-                        📦 Paquetes Emprendedor
+                    <button onclick="selectCategory('bundles')" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-bold px-5 py-2.5 rounded text-xs transition-all uppercase tracking-wider">
+                        Paquetes para Emprendedores
                     </button>
                 </div>
             </div>
 
-            <!-- Interactive Banner Feature: Emprendedor Starter Kit Quick Add -->
-            <div class="lg:w-5/12 bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/10 relative shadow-2xl">
-                <span class="absolute -top-3 -right-3 bg-eticentro-accent text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-lg transform rotate-6 uppercase tracking-wider">
-                    🔥 El Más Vendido
-                </span>
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-eticentro-lightblue flex items-center justify-center text-white text-xl">
-                        <i class="fas fa-box-open"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-black text-lg text-white">Starter Pack Emprendedor</h3>
-                        <p class="text-xs text-slate-300">Kit básico de embalaje profesional</p>
-                    </div>
+            <!-- Visual Quick Product Catalog Panel (Mimics Uline Category visual panel) -->
+            <div class="lg:w-1/2 grid grid-cols-3 gap-3 w-full max-w-md mx-auto">
+                <div onclick="selectCategory('etiquetas')" class="bg-white p-3 border border-slate-200 rounded text-center cursor-pointer hover:border-eticentro-blue transition-colors shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1603513492128-ba909bca7477?w=150&q=80" alt="Labels" class="h-14 mx-auto object-contain rounded" onerror="this.src='https://placehold.co/150x100/ffffff/004B87?text=Etiquetas'">
+                    <span class="text-[10px] font-bold text-eticentro-blue uppercase block mt-1">Etiquetas</span>
                 </div>
-                
-                <ul class="space-y-2.5 text-xs text-slate-200 mb-6">
-                    <li class="flex items-center gap-2">
-                        <span class="text-eticentro-lightblue"><i class="fas fa-check-circle"></i></span>
-                        1x Rollo Etiqueta Térmica Directa (4"x6", 500 pzas)
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <span class="text-eticentro-lightblue"><i class="fas fa-check-circle"></i></span>
-                        2x Rollos de Stretch Film Manual de Alta Resistencia
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <span class="text-eticentro-lightblue"><i class="fas fa-check-circle"></i></span>
-                        3x Cintas de Empaque Navitek (Canela o Transparente)
-                    </li>
-                </ul>
-
-                <div class="flex items-end justify-between border-t border-white/10 pt-4">
-                    <div>
-                        <span class="text-xs text-slate-300 block">Precio Especial de Lanzamiento</span>
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl font-black text-white">$495 MXN</span>
-                            <span class="text-sm text-slate-400 line-through">$620</span>
-                        </div>
-                    </div>
-                    <button onclick="addBundleToCart(1)" class="bg-white hover:bg-slate-100 text-eticentro-blue font-black px-5 py-2.5 rounded-xl transition-all text-xs flex items-center gap-2 shadow-lg hover:scale-105">
-                        <i class="fas fa-cart-plus"></i> Agregar Kit
-                    </button>
+                <div onclick="selectCategory('empaque')" class="bg-white p-3 border border-slate-200 rounded text-center cursor-pointer hover:border-eticentro-blue transition-colors shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=150&q=80" alt="Stretch Film" class="h-14 mx-auto object-contain rounded" onerror="this.src='https://placehold.co/150x100/ffffff/004B87?text=Stretch+Wrap'">
+                    <span class="text-[10px] font-bold text-eticentro-blue uppercase block mt-1">Stretch Wrap</span>
+                </div>
+                <div onclick="selectCategory('empaque')" class="bg-white p-3 border border-slate-200 rounded text-center cursor-pointer hover:border-eticentro-blue transition-colors shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=150&q=80" alt="Amortiguación" class="h-14 mx-auto object-contain rounded" onerror="this.src='https://placehold.co/150x100/ffffff/004B87?text=Burbuja'">
+                    <span class="text-[10px] font-bold text-eticentro-blue uppercase block mt-1">Burbuja</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MAIN PRODUCTS SECTION -->
+    <!-- MAIN CATALOG CONTAINER -->
     <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
         
-        <!-- SECTION TITLE & CATEGORY FILTER INFO -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <!-- SECTION HEADING -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 border-b border-slate-200 pb-4">
             <div>
-                <h2 id="sectionTitle" class="text-2xl font-black text-eticentro-dark flex items-center gap-2">
-                    ⭐ Todos los Productos
+                <h2 id="sectionTitle" class="text-xl font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
+                    📂 Todos los Productos
                 </h2>
                 <p id="sectionSubtitle" class="text-xs text-slate-500 mt-1">
-                    Explora nuestra amplia gama de insumos de empaque de alta calidad.
+                    Mostrando inventario oficial de EtiCentro Hermosillo con escala de precios mayoristas.
                 </p>
             </div>
 
             <!-- Sorting Dropdown -->
             <div class="flex items-center gap-2 self-stretch sm:self-auto">
                 <span class="text-xs font-bold text-slate-500 whitespace-nowrap">Ordenar por:</span>
-                <select id="sortBy" onchange="sortCatalog()" class="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 focus:outline-none focus:ring-1 focus:ring-eticentro-blue w-full sm:w-auto">
+                <select id="sortBy" onchange="sortCatalog()" class="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-1 focus:ring-eticentro-blue w-full sm:w-auto shadow-sm">
                     <option value="popular">Más Populares</option>
                     <option value="price-asc">Precio: Menor a Mayor</option>
                     <option value="price-desc">Precio: Mayor a Menor</option>
@@ -221,24 +188,24 @@
             </div>
         </div>
 
-        <!-- BUNDLES PROMOTIONAL HIGHLIGHT (Shows prominently when looking at 'all' or 'bundles') -->
+        <!-- BUNDLES PROMOTIONAL HIGHLIGHT (Shows prominently when looking at 'all' o 'bundles') -->
         <div id="bundlesHighlightContainer" class="mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Dynamically populated if 'bundles' is chosen or on initial render -->
         </div>
 
-        <!-- PRODUCTS GRID -->
+        <!-- PRODUCTS GRID (Visual Card Grid like Uline catalog search) -->
         <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Dynamically populated via JS -->
         </div>
 
         <!-- NO RESULTS PLACEHOLDER -->
-        <div id="noResults" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-slate-200/60 shadow-sm mt-6">
+        <div id="noResults" class="hidden text-center py-16 px-4 bg-white rounded border border-slate-200/80 shadow-sm mt-6">
             <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400 text-xl">
                 <i class="fas fa-search"></i>
             </div>
-            <h3 class="font-black text-lg text-slate-700">No encontramos resultados</h3>
+            <h3 class="font-bold text-lg text-slate-700">No encontramos resultados</h3>
             <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto">Prueba buscando con palabras clave más generales o limpia los filtros.</p>
-            <button onclick="resetSearch()" class="mt-4 bg-eticentro-blue text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-eticentro-dark transition-colors">
+            <button onclick="resetSearch()" class="mt-4 bg-eticentro-blue text-white text-xs font-bold px-4 py-2 rounded hover:bg-eticentro-dark transition-colors">
                 Ver todos los productos
             </button>
         </div>
@@ -254,37 +221,37 @@
                 <div class="pointer-events-auto w-screen max-w-md">
                     <div class="flex h-full flex-col bg-white shadow-2xl">
                         <!-- Drawer Header -->
-                        <div class="bg-eticentro-dark text-white px-6 py-5 flex items-center justify-between">
+                        <div class="bg-eticentro-blue text-white px-6 py-5 flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
-                                <span class="bg-eticentro-lightblue text-white p-2 rounded-xl text-xs flex items-center justify-center">
-                                    <i class="fas fa-shopping-basket"></i>
+                                <span class="bg-white/10 text-white p-2 rounded text-xs flex items-center justify-center">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </span>
                                 <div>
-                                    <h3 class="font-black text-base text-white">Tu Carrito de Compra</h3>
-                                    <p class="text-[10px] text-slate-300 tracking-wide uppercase font-bold">EtiCentro Hermosillo</p>
+                                    <h3 class="font-bold text-sm text-white uppercase tracking-wider">Tu Solicitud de Pedido</h3>
+                                    <p class="text-[9px] text-slate-200 tracking-wider uppercase font-bold">EtiCentro Hermosillo</p>
                                 </div>
                             </div>
-                            <button onclick="toggleCart(false)" class="text-slate-300 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
+                            <button onclick="toggleCart(false)" class="text-slate-200 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
                                 <i class="fas fa-times text-lg"></i>
                             </button>
                         </div>
 
                         <!-- Drawer Body: Cart Items List -->
-                        <div class="flex-1 overflow-y-auto px-4 py-6 custom-scrollbar space-y-4" id="cartItemsList">
+                        <div class="flex-1 overflow-y-auto px-4 py-6 custom-scrollbar space-y-4 bg-slate-50" id="cartItemsList">
                             <!-- Dynamically updated by JS -->
                         </div>
 
                         <!-- Drawer Footer: Subtotal & Dispatch -->
-                        <div class="border-t border-slate-200 bg-slate-50 p-6 space-y-4">
+                        <div class="border-t border-slate-200 bg-white p-6 space-y-4">
                             <!-- Dynamic Wholesale Savings Callout inside cart -->
-                            <div id="cartSavingsBanner" class="hidden bg-green-50 border border-green-100 rounded-xl p-3 flex items-center gap-3">
-                                <span class="text-green-500 text-sm">💰</span>
+                            <div id="cartSavingsBanner" class="hidden bg-green-50 border border-green-200 rounded p-3 flex items-center gap-3">
+                                <span class="text-green-600 text-sm">💰</span>
                                 <div class="text-[11px] text-green-700 font-medium">
-                                    ¡Felicidades! Has desbloqueado precios de <strong class="font-extrabold uppercase">Mayoreo</strong> en algunos productos de tu carrito.
+                                    ¡Felicidades! Has activado precios de <strong class="font-bold uppercase">Mayoreo</strong> en tu pedido.
                                 </div>
                             </div>
 
-                            <div class="space-y-1.5">
+                            <div class="space-y-1.5 border-b border-slate-100 pb-3">
                                 <div class="flex justify-between text-xs text-slate-500 font-medium">
                                     <span>Subtotal Menudeo:</span>
                                     <span id="retailSubtotalValue" class="line-through">$0.00 MXN</span>
@@ -293,37 +260,33 @@
                                     <span>Ahorro por Mayoreo:</span>
                                     <span id="savingsValue">-$0.00 MXN</span>
                                 </div>
-                                <div class="flex justify-between text-slate-900 font-black text-lg border-t border-slate-200 pt-2">
+                                <div class="flex justify-between text-slate-900 font-bold text-base pt-1">
                                     <span>Total Estimado:</span>
                                     <span id="totalValue" class="text-eticentro-blue">$0.00 MXN</span>
                                 </div>
                             </div>
 
-                            <p class="text-[10px] text-slate-400 text-center">
-                                * Los precios finales e impuestos se consolidarán directamente por WhatsApp.
-                            </p>
-
                             <!-- Checkout Form inside Drawer -->
-                            <div class="space-y-3 pt-2">
+                            <div class="space-y-3">
                                 <div class="space-y-1">
-                                    <label class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Tu Nombre / Empresa *</label>
-                                    <input type="text" id="clientName" placeholder="Ej. Juan Pérez / Tienda Del Centro" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-eticentro-blue focus:outline-none">
+                                    <label class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Tu Nombre / Razón Social *</label>
+                                    <input type="text" id="clientName" placeholder="Ej. Juan Pérez / Empaques de Sonora" class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-2 text-xs focus:ring-1 focus:ring-eticentro-blue focus:bg-white focus:outline-none">
                                 </div>
                                 <div class="space-y-1">
-                                    <label class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Método de Entrega / Dirección *</label>
-                                    <select id="deliveryMethod" onchange="toggleAddressField()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-eticentro-blue focus:outline-none">
-                                        <option value="pickup">Recoger en Sucursal (Hermosillo, Col. Loma Linda)</option>
-                                        <option value="shipping">Envío Local o Nacional (Requiere cotizar paquetería)</option>
+                                    <label class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Método de Entrega / Entrega *</label>
+                                    <select id="deliveryMethod" onchange="toggleAddressField()" class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-2 text-xs focus:ring-1 focus:ring-eticentro-blue focus:outline-none">
+                                        <option value="pickup">Recoger en Bodega (Gómez Farías #280 Nte, Loma Linda)</option>
+                                        <option value="shipping">Envío Local o Nacional (Requiere cotizar fletera)</option>
                                     </select>
                                 </div>
                                 <div id="addressField" class="space-y-1 hidden">
-                                    <label class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Dirección Completa de Envío *</label>
-                                    <textarea id="deliveryAddress" rows="2" placeholder="Calle, Número, Colonia, Código Postal, Ciudad..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-eticentro-blue focus:outline-none"></textarea>
+                                    <label class="text-[10px] uppercase font-bold tracking-wider text-slate-500 block">Dirección de Envío Completa *</label>
+                                    <textarea id="deliveryAddress" rows="2" placeholder="Calle, Número, Colonia, Código Postal, Ciudad..." class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-2 text-xs focus:ring-1 focus:ring-eticentro-blue focus:outline-none"></textarea>
                                 </div>
                             </div>
 
-                            <button onclick="dispatchOrder()" class="w-full bg-eticentro-accent hover:bg-opacity-90 text-white font-black py-3 px-4 rounded-xl text-sm transition-all shadow-lg shadow-eticentro-accent/15 flex items-center justify-center gap-2 transform active:scale-95 mt-4">
-                                <i class="fab fa-whatsapp text-lg"></i> Enviar Pedido a WhatsApp
+                            <button onclick="dispatchOrder()" class="w-full bg-[#25D366] hover:bg-green-600 text-white font-bold py-3 px-4 rounded text-xs transition-all shadow flex items-center justify-center gap-2 transform active:scale-95 uppercase tracking-wider">
+                                <i class="fab fa-whatsapp text-sm"></i> Generar Orden por WhatsApp
                             </button>
                         </div>
                     </div>
@@ -332,134 +295,49 @@
         </div>
     </div>
 
-    <!-- NOTIFICATION SYSTEM (Custom alert toast) -->
-    <div id="toast" class="fixed bottom-6 left-6 z-50 bg-eticentro-dark text-white rounded-2xl px-5 py-4 shadow-2xl flex items-center gap-3 border border-slate-700/50 max-w-sm transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
-        <span class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm shadow-md" id="toastIcon">
+    <!-- NOTIFICATION SYSTEM -->
+    <div id="toast" class="fixed bottom-6 left-6 z-50 bg-slate-900 text-white rounded px-5 py-4 shadow-xl flex items-center gap-3 border border-slate-700 max-w-sm transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <span class="w-7 h-7 rounded-full bg-[#25D366] text-white flex items-center justify-center text-xs shadow-md" id="toastIcon">
             <i class="fas fa-check"></i>
         </span>
         <div>
-            <h4 id="toastTitle" class="font-extrabold text-xs text-white">¡Producto Agregado!</h4>
+            <h4 id="toastTitle" class="font-bold text-xs text-white">¡Producto Agregado!</h4>
             <p id="toastMessage" class="text-[10px] text-slate-300 mt-0.5">Se añadió al carrito satisfactoriamente.</p>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-eticentro-dark text-white pt-12 pb-6 px-4 mt-16 border-t border-slate-800">
-        <div class="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-10">
-            <!-- Company Info Column -->
-            <div class="space-y-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 bg-eticentro-lightblue text-white rounded flex items-center justify-center font-bold">
-                        E
-                    </div>
-                    <span class="text-lg font-black text-white">ETI<span class="text-eticentro-lightblue">CENTRO</span></span>
-                </div>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Especialistas en etiquetado e insumos de empaquetado para todo tipo de industrias y comercio emprendedor. Encuentra las mejores marcas de cintas, stretch film, flejes y tarimas de Hermosillo.
-                </p>
-                <div class="flex space-x-3 text-slate-300">
-                    <a href="https://www.facebook.com/p/Eticentro-61557148045697/" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-eticentro-lightblue transition-colors">
-                        <i class="fab fa-facebook-f text-sm"></i>
-                    </a>
-                    <a href="https://www.instagram.com/eticentro?igsh=eHduMHVzcWR3djAx" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-eticentro-lightblue transition-colors">
-                        <i class="fab fa-instagram text-sm"></i>
-                    </a>
-                    <a href="https://www.eticentrohermosillo.com/" target="_blank" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-eticentro-lightblue transition-colors">
-                        <i class="fas fa-globe text-sm"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Operational Address Column -->
-            <div class="space-y-4">
-                <h4 class="font-black text-sm text-white border-b border-white/10 pb-2 uppercase tracking-wider">📍 Sucursal Hermosillo</h4>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Estamos listos para atenderte físicamente en nuestras instalaciones o coordinar envíos inmediatos.
-                </p>
-                <div class="space-y-2 text-xs text-slate-300">
-                    <p class="flex items-start gap-2">
-                        <span class="text-eticentro-lightblue mt-0.5"><i class="fas fa-map-marker-alt"></i></span>
-                        <span>Gomez Farias #280 Norte, Col. Loma Linda, Hermosillo, Sonora.</span>
-                    </p>
-                    <p class="flex items-center gap-2">
-                        <span class="text-eticentro-lightblue"><i class="fas fa-phone-alt"></i></span>
-                        <span>662 353 0191</span>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Quick Links / Hours -->
-            <div class="space-y-4">
-                <h4 class="font-black text-sm text-white border-b border-white/10 pb-2 uppercase tracking-wider">⏰ Horario de Atención</h4>
-                <ul class="space-y-2 text-xs text-slate-300">
-                    <li class="flex justify-between">
-                        <span>Lunes a Viernes:</span>
-                        <span class="text-slate-400">9:00 AM - 6:00 PM</span>
-                    </li>
-                    <li class="flex justify-between">
-                        <span>Sábado:</span>
-                        <span class="text-slate-400">9:00 AM - 2:00 PM</span>
-                    </li>
-                    <li class="flex justify-between">
-                        <span>Domingo:</span>
-                        <span class="text-eticentro-accent font-bold">Cerrado</span>
-                    </li>
-                </ul>
-                <div class="p-3 bg-white/5 rounded-xl border border-white/10">
-                    <p class="text-[10px] text-slate-400">¿Necesitas una medida especial en etiquetas o empaques? Ponte en contacto con nosotros.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mx-auto max-w-6xl mt-12 pt-6 border-t border-slate-800 text-center text-[11px] text-slate-500">
-            <p>&copy; 2026 EtiCentro Hermosillo. Todos los derechos reservados. Las marcas Tuk, Navitek, Yeti pertenecen a sus respectivos fabricantes.</p>
-        </div>
-    </footer>
-
-
     <!-- DATABASE & LOGIC SCRIPTS -->
     <script>
-        // DB of Products (based on provided pdf content and tailored standard catalogs)
+        // High-quality, clean visual background product catalog (using pristine, clear photos of logistics & packaging items)
         const productsDB = [
             // CATEGORY: BUNDLES (PAQUETES)
             {
                 id: 1,
-                name: "Kit Starter Emprendedor",
+                name: "Kit Starter Emprendedor Envíos",
                 category: "bundles",
                 price: 495,
                 wholesalePrice: 420,
-                wholesaleQty: 3, // Bundles trigger discount starting from 3 kits
-                description: "El paquete idóneo para emprendedores con envíos diarios. Incluye 1 Rollo Etiqueta Térmica (4x6 pulg, 500 pzas), 2 Stretch Films 18 pulg, y 3 Cintas de empaque Navitek.",
+                wholesaleQty: 3,
+                description: "La solución idónea para iniciar tus envíos. Contiene: 1 Rollo Etiqueta Térmica 4x6 pulg (500 pzas), 2 Stretch Films 18 pulg de alta adherencia y 3 Cintas Canela Navitek.",
                 unit: "Kit",
                 popular: true,
-                badge: "Más Vendido",
-                isBundle: true
+                badge: "Recomendado",
+                isBundle: true,
+                image: "https://images.unsplash.com/photo-1566576912321-d58ded7a2144?w=400&q=80" // Clean packing supplies representation
             },
             {
                 id: 2,
-                name: "Bundle Envío Pro",
+                name: "Bundle Envío Pro Premium",
                 category: "bundles",
                 price: 1150,
                 wholesalePrice: 990,
                 wholesaleQty: 2,
-                description: "Kit avanzado de empaque. Contiene: 3 Rollos de Etiquetas Térmicas Directas (4x6), 4 Rollos Stretch Film Manual, 6 Rollos Cinta Canela, y 1 Despachador de Stretch Práctico.",
+                description: "Optimiza tus tiempos. Incluye: 3 Rollos de Etiquetas Térmicas Directas (4x6\"), 4 Rollos de Stretch Film manual, 6 Rollos de Cinta Canela de alta resistencia y 1 Despachador de Stretch Práctico.",
                 unit: "Kit",
                 popular: true,
-                badge: "Emprendedor Pro",
-                isBundle: true
-            },
-            {
-                id: 3,
-                name: "Paquete Flejado Industrial",
-                category: "bundles",
-                price: 2490,
-                wholesalePrice: 2190,
-                wholesaleQty: 2,
-                description: "Kit de Flejado de alta seguridad. Incluye: 1 Rollo de Fleje Plástico de Polipropileno de 1/2 pulgada, 1 Tensionadora Manual, 1 Selladora Profesional, y 1 Caja de Sellos de Acero Galvanizado.",
-                unit: "Kit",
-                popular: false,
-                badge: "Industrial",
-                isBundle: true
+                badge: "B2B Mayorista",
+                isBundle: true,
+                image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80" // High volume packaging goods
             },
 
             // CATEGORY: ETIQUETAS & RIBBONS
@@ -470,34 +348,37 @@
                 price: 185,
                 wholesalePrice: 145,
                 wholesaleQty: 10,
-                description: "Rollo de etiquetas autoadheribles para impresora de transferencia térmica directa. No requiere ribbon. Medida estándar 4x6 pulgadas, 500 etiquetas por rollo.",
+                description: "Etiquetas autoadheribles blancas. No requiere ribbon de tinta. Medida universal de 4x6 pulgadas ideal para paqueterías convencionales. 500 pzas por rollo.",
                 unit: "Rollo",
                 popular: true,
-                badge: "Estándar Envíos"
+                badge: "Uline Estilo",
+                image: "https://images.unsplash.com/photo-1603513492128-ba909bca7477?w=400&q=80" // Labels roll
             },
             {
                 id: 5,
-                name: "Rollo Etiqueta Semi-Gloss",
+                name: "Bolsas y Sobres con Burbuja (Mailers)",
                 category: "etiquetas",
-                price: 160,
-                wholesalePrice: 125,
-                wholesaleQty: 12,
-                description: "Etiqueta de papel semibrillante de alta definición de transferencia térmica. Ideal para codificación de inventario de larga duración (requiere ribbon).",
-                unit: "Rollo",
-                popular: false,
-                badge: "Impresión de Calidad"
+                price: 15,
+                wholesalePrice: 11,
+                wholesaleQty: 100,
+                description: "Sobres acolchados de papel kraft con burbuja interna protectora. Sellado adhesivo fuerte, perfectos para piezas pequeñas y frágiles.",
+                unit: "Pieza",
+                popular: true,
+                badge: "Sobres Envío",
+                image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80" // Mailers/envelopes
             },
             {
                 id: 6,
-                name: "Rollo BOPP Blanco Brillo",
-                category: "etiquetas",
-                price: 240,
-                wholesalePrice: 195,
-                wholesaleQty: 8,
-                description: "Película plástica de polipropileno biaxialmente orientado (BOPP). Impermeable al agua y aceites, ideal para cosméticos, congelados o alimentos.",
+                name: "Burbuja Protectora en Rollo (1/2\" x 50m)",
+                category: "empaque",
+                price: 380,
+                wholesalePrice: 295,
+                wholesaleQty: 5,
+                description: "Rollo de plástico burbuja de gran amortiguación para protección de mercancías delicadas durante tránsito. 12 pulgadas de ancho.",
                 unit: "Rollo",
                 popular: true,
-                badge: "Altamente Resistente"
+                badge: "Burbuja",
+                image: "https://images.unsplash.com/photo-1595079676339-1534801ad6cf?w=400&q=80" // Packing cushion
             },
             {
                 id: 7,
@@ -506,22 +387,11 @@
                 price: 95,
                 wholesalePrice: 75,
                 wholesaleQty: 10,
-                description: "Cinta de tinta de cera para impresoras de transferencia térmica. Excelente nitidez en códigos de barra impresos sobre etiquetas de papel y semi-gloss.",
+                description: "Cinta de transferencia de cera negra de alta definición. Óptima legibilidad en papeles de etiquetado estándar e industrial.",
                 unit: "Pieza",
                 popular: false,
-                badge: "Calidad Premium"
-            },
-            {
-                id: 8,
-                name: "Ribbon Resina Industrial (110mm x 300m)",
-                category: "etiquetas",
-                price: 260,
-                wholesalePrice: 215,
-                wholesaleQty: 5,
-                description: "Cinta de transferencia térmica base resina. Máxima resistencia a la abrasión mecánica, químicos, humedad y temperaturas extremas. Ideal para BOPP.",
-                unit: "Pieza",
-                popular: false,
-                badge: "Uso Rudo"
+                badge: "Tinta Ribbon",
+                image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&q=80" // Roll material
             },
 
             // CATEGORY: EMPAQUE & FLEJADO
@@ -532,46 +402,24 @@
                 price: 195,
                 wholesalePrice: 155,
                 wholesaleQty: 6,
-                description: "Película plástica estirable de alta resistencia para paletizado manual. Excelente adherencia y elongación para asegurar cargas ligeras y medianas.",
+                description: "Película estirable transparente manual para embalar y consolidar tarimas pesadas. Gran estiramiento y resistencia a la perforación.",
                 unit: "Rollo",
                 popular: true,
-                badge: "Alta Calidad"
-            },
-            {
-                id: 10,
-                name: "Stretch Film Manual (18\" x 1500 ft Cal. 70)",
-                category: "empaque",
-                price: 275,
-                wholesalePrice: 225,
-                wholesaleQty: 6,
-                description: "Stretch film industrial pesado Calibre 70. Ofrece mayor tensión y protección contra desgarros para asegurar estibas pesadas de manera segura.",
-                unit: "Rollo",
-                popular: true,
-                badge: "Uso Industrial"
+                badge: "Película Estirable",
+                image: "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=400&q=80" // Stretch wrap
             },
             {
                 id: 11,
-                name: "Cinta de Empaque Transparente Tuk (48mm x 150m)",
+                name: "Cinta Canela de Empaque Tuk (48mm x 150m)",
                 category: "empaque",
                 price: 45,
                 wholesalePrice: 32,
                 wholesaleQty: 12,
-                description: "Cinta adhesiva de polipropileno de alta resistencia con adhesivo acrílico de larga duración. Perfecta para sellado seguro de cajas de cartón.",
+                description: "Cinta de empaque Navitek o Tuk de adhesivo caliente instantáneo. Se adhiere con seguridad en cartón liso y reciclado de envíos.",
                 unit: "Rollo",
                 popular: true,
-                badge: "Tuk Original"
-            },
-            {
-                id: 12,
-                name: "Cinta de Empaque Canela Navitek (48mm x 150m)",
-                category: "empaque",
-                price: 42,
-                wholesalePrice: 30,
-                wholesaleQty: 12,
-                description: "Cinta de empaque Navitek color café canela. Gran adhesión inicial (Hot-Melt) ideal para armado rápido de cajas de envíos.",
-                unit: "Rollo",
-                popular: false,
-                badge: "Precio/Valor"
+                badge: "Tuk Original",
+                image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&q=80" // Industrial boxes with tape
             },
             {
                 id: 13,
@@ -580,108 +428,52 @@
                 price: 690,
                 wholesalePrice: 580,
                 wholesaleQty: 3,
-                description: "Rollo industrial de fleje plástico de polipropileno de 1/2 pulgada de ancho. Ideal para agrupar paquetes y asegurar cajas.",
+                description: "Rollo industrial de fleje de PP plástico para bultos, cajas y aseguramiento de tarimas. Gran resistencia a tensiones extremas.",
                 unit: "Bobina",
                 popular: false,
-                badge: "Resistente"
+                badge: "Flejado",
+                image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=400&q=80" // Industrial strapping roll
             },
             {
                 id: 14,
-                name: "Tensionadora Manual para Fleje de Poliéster/PP",
+                name: "Esquineros de Cartón Rígido (3\" x 3\" x 1.2m)",
                 category: "empaque",
-                price: 1190,
-                wholesalePrice: 1050,
-                wholesaleQty: 2,
-                description: "Herramienta tensionadora manual reforzada. Permite tensar el fleje con facilidad alrededor de tarimas y bultos grandes.",
+                price: 48,
+                wholesalePrice: 36,
+                wholesaleQty: 50,
+                description: "Ángulos de cartón prensado sólido de alta resistencia para evitar la deformación de las cajas y tarimas al tensionar flejes.",
                 unit: "Pieza",
                 popular: false,
-                badge: "Calidad Industrial"
-            },
-            {
-                id: 15,
-                name: "Selladora de Fleje de Plástico Manual",
-                category: "empaque",
-                price: 890,
-                wholesalePrice: 790,
-                wholesaleQty: 2,
-                description: "Herramienta selladora (pinzas de compresión) para fijar el sello de acero galvanizado en flejes de 1/2\".",
-                unit: "Pieza",
-                popular: false,
-                badge: "Uso Manual"
-            },
-            {
-                id: 16,
-                name: "Sello Metálico Galvanizado 1/2\" (Caja 1000 pzs)",
-                category: "empaque",
-                price: 360,
-                wholesalePrice: 295,
-                wholesaleQty: 3,
-                description: "Grapas metálicas para fleje de plástico. El galvanizado evita la corrosión y asegura un sellado de fricción confiable.",
-                unit: "Caja",
-                popular: false,
-                badge: "Seguro"
+                badge: "Esquineros",
+                image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&q=80" // Cardboard structured elements
             },
 
-            // CATEGORY: LOGISTICA E INDUSTRIAL (TARIMAS, BOLSAS, SEÑALIZACIÓN)
+            // CATEGORY: LOGISTICA E INDUSTRIAL
             {
                 id: 17,
-                name: "Tarima de Madera de Exportación (Tratada Térmicamente)",
+                name: "Tarima de Madera para Exportación (NIMF-15)",
                 category: "logistica",
                 price: 390,
                 wholesalePrice: 320,
                 wholesaleQty: 10,
-                description: "Tarima de madera resistente de pino de primera calidad, tratada con calor (NIMF-15) bajo las más estrictas regulaciones internacionales para exportación.",
+                description: "Tarimas de pino de alta dureza, con certificación internacional NIMF-15 de tratamiento térmico fitosanitario para cruce aduanero.",
                 unit: "Pieza",
                 popular: true,
-                badge: "Exportación NIMF-15"
+                badge: "Tarimas",
+                image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80" // Logistics pallets
             },
             {
                 id: 18,
-                name: "Bolsa en Rollo de Alta Densidad (35x45 cm)",
-                category: "logistica",
-                price: 110,
-                wholesalePrice: 85,
-                wholesaleQty: 10,
-                description: "Rollo de bolsa plástica resistente de polietileno de alta densidad. Multiusos para comercios y almacenamiento. Alta elasticidad.",
-                unit: "Rollo",
-                popular: false,
-                badge: "Gran Rendimiento"
-            },
-            {
-                id: 19,
-                name: "Bolsa Negra de Basura Resistente (70cm x 1.20m)",
-                category: "logistica",
-                price: 165,
-                wholesalePrice: 130,
-                wholesaleQty: 5,
-                description: "Bolsa plástica negra para residuos pesados. Ideal para mantenimiento de almacenes y áreas logísticas industriales.",
-                unit: "Paquete",
-                popular: false,
-                badge: "Uso Rudo"
-            },
-            {
-                id: 20,
-                name: "Guantes de Protección Anticorte Industrial",
-                category: "logistica",
-                price: 85,
-                wholesalePrice: 65,
-                wholesaleQty: 12,
-                description: "Guantes protectores tejidos de alta resistencia con recubrimiento de nitrilo en palmas para manipulación segura de flejes y cajas.",
-                unit: "Par",
-                popular: false,
-                badge: "Seguridad Industrial"
-            },
-            {
-                id: 21,
-                name: "Señalamiento de Seguridad 'Alto Voltaje'",
+                name: "Señalamiento Industrial de PVC Rígido",
                 category: "logistica",
                 price: 120,
                 wholesalePrice: 95,
                 wholesaleQty: 10,
-                description: "Placa rígida de señalización de advertencia para interiores y exteriores de bodegas. Colores de alta visibilidad resistentes a rayos UV.",
+                description: "Señales regulatorias e informativas para interior de almacén y zona de andenes. Material de alta visibilidad resistente a golpes.",
                 unit: "Pieza",
                 popular: false,
-                badge: "Protección Civil"
+                badge: "Señales",
+                image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=400&q=80" // Warning signs representation
             },
 
             // CATEGORY: PROMOCIONALES & TEXTIL
@@ -692,50 +484,28 @@
                 price: 140,
                 wholesalePrice: 95,
                 wholesaleQty: 15,
-                description: "Gorra trucker de malla ajustable personalizada con el logotipo de tu empresa o negocio mediante impresión DTF de alta definición.",
+                description: "Gorra de red ajustable estampada a todo color con el diseño e identidad de tu empresa, ideales para personal operativo o preventas.",
                 unit: "Pieza",
                 popular: true,
-                badge: "Promocional"
-            },
-            {
-                id: 23,
-                name: "Playera Uniforme Premium Impresa",
-                category: "promocionales",
-                price: 210,
-                wholesalePrice: 145,
-                wholesaleQty: 10,
-                description: "Playera 100% algodón preencogido personalizada para tus colaboradores con su logotipo en el pecho y espalda mediante DTF.",
-                unit: "Pieza",
-                popular: true,
-                badge: "Identidad Corporativa"
+                badge: "Textil Promos",
+                image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&q=80" // Caps
             },
             {
                 id: 24,
-                name: "Termo Yeti 20oz Grabado Láser",
+                name: "Termo Grabado con Láser",
                 category: "promocionales",
                 price: 490,
                 wholesalePrice: 390,
                 wholesaleQty: 6,
-                description: "Termo de acero inoxidable grabado con tu diseño/logotipo con rayo láser de alta precisión. Acabado de larga duración.",
+                description: "Termos ejecutivos tipo Yeti de acero inoxidable, grabados a precisión láser con logotipo de alta durabilidad.",
                 unit: "Pieza",
                 popular: false,
-                badge: "Regalo Ejecutivo"
-            },
-            {
-                id: 25,
-                name: "Lona Impresa Gran Formato con Ojillos",
-                category: "promocionales",
-                price: 320,
-                wholesalePrice: 250,
-                wholesaleQty: 5,
-                description: "Impresión publicitaria en lona de alta densidad. Incluye dobladillo reforzado y ojillos metálicos perimetrales para instalación.",
-                unit: "M²",
-                popular: false,
-                badge: "Publicidad Exterior"
+                badge: "Grabados",
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&q=80" // Cups/Mugs
             }
         ];
 
-        // Global Cart State
+        // Global State
         let cart = [];
         let activeCategory = 'all';
 
@@ -745,7 +515,6 @@
             updateCartUI();
         }
 
-        // Render the Catalog dynamic grid based on category and search
         function renderCatalog() {
             const grid = document.getElementById('productsGrid');
             const bundlesContainer = document.getElementById('bundlesHighlightContainer');
@@ -754,14 +523,13 @@
             grid.innerHTML = '';
             bundlesContainer.innerHTML = '';
 
-            // Get Search query from desktop or mobile inputs
-            const searchVal = (document.getElementById('searchInput').value || document.getElementById('mobileSearchInput').value || '').toLowerCase().trim();
+            const searchVal = (document.getElementById('searchInput').value || '').toLowerCase().trim();
             const sortBy = document.getElementById('sortBy').value;
 
             // Filter products
             let filtered = productsDB.filter(p => {
                 const matchesCategory = (activeCategory === 'all' || p.category === activeCategory);
-                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.description.toLowerCase().includes(searchVal) || p.badge?.toLowerCase().includes(searchVal);
+                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.description.toLowerCase().includes(searchVal);
                 return matchesCategory && matchesSearch;
             });
 
@@ -774,196 +542,173 @@
                 filtered.sort((a, b) => (b.popular ? 1 : 0) - (a.popular ? 1 : 0));
             }
 
-            // Show or Hide No Results
             if (filtered.length === 0) {
                 noResults.classList.remove('hidden');
             } else {
                 noResults.classList.add('hidden');
             }
 
-            // Split into Bundles and regular products
+            // Split and append to relevant containers
             filtered.forEach(p => {
                 if (p.isBundle) {
-                    // Render in premium bundle row highlight
                     bundlesContainer.appendChild(createBundleCard(p));
                 } else {
-                    // Render standard catalog card
                     grid.appendChild(createProductCard(p));
                 }
             });
         }
 
-        // Create standard product catalog card
-        function createProductCard(product) {
+        function createProductCard(p) {
             const card = document.createElement('div');
-            card.className = "bg-white rounded-3xl p-5 border border-slate-200/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group";
+            // Clean stark white card grid box with clean gray borders matching Uline style
+            card.className = "bg-white border border-slate-200 p-4 flex flex-col justify-between hover:border-eticentro-blue transition-colors duration-150 uline-grid-border rounded-md";
             
-            // Generate visual dummy illustration for item types using inline SVG icons
-            let iconMarkup = `<i class="fas fa-cube text-eticentro-blue text-4xl"></i>`;
-            if (product.category === 'etiquetas') {
-                iconMarkup = `<i class="fas fa-tags text-eticentro-blue text-4xl"></i>`;
-            } else if (product.category === 'empaque') {
-                iconMarkup = `<i class="fas fa-box-open text-eticentro-blue text-4xl"></i>`;
-            } else if (product.category === 'logistica') {
-                iconMarkup = `<i class="fas fa-pallet text-eticentro-blue text-4xl"></i>`;
-            } else if (product.category === 'promocionales') {
-                iconMarkup = `<i class="fas fa-tshirt text-eticentro-blue text-4xl"></i>`;
-            }
-
             card.innerHTML = `
                 <div>
-                    <!-- Badge and Icon header -->
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-slate-100 text-slate-600 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                            ${product.unit}
+                    <!-- Badge Header -->
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="bg-slate-100 text-slate-700 text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                            Ref: #${p.id}0${p.id}
                         </span>
-                        ${product.badge ? `
-                            <span class="bg-eticentro-lightblue/10 text-eticentro-blue text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-eticentro-lightblue/10">
-                                ${product.badge}
+                        ${p.badge ? `
+                            <span class="text-eticentro-blue text-[9px] font-bold uppercase tracking-wider">
+                                • ${p.badge}
                             </span>
                         ` : ''}
                     </div>
 
-                    <!-- Graphic Placeholder -->
-                    <div class="h-32 bg-slate-50 rounded-2xl flex items-center justify-center mb-4 border border-slate-100 group-hover:bg-eticentro-blue/5 transition-all">
-                        ${iconMarkup}
+                    <!-- Clean white-ground Product Photo -->
+                    <div class="h-36 bg-white flex items-center justify-center p-2 mb-3 border border-slate-100 rounded">
+                        <img src="${p.image}" alt="${p.name}" class="h-full w-full object-contain mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/400x300/ffffff/004B87?text=${encodeURIComponent(p.name)}';">
                     </div>
 
-                    <h3 class="font-extrabold text-sm text-slate-800 leading-snug group-hover:text-eticentro-blue transition-colors">${product.name}</h3>
-                    <p class="text-[11px] text-slate-500 mt-1.5 leading-relaxed line-clamp-2 h-8">${product.description}</p>
+                    <h3 class="font-bold text-xs text-slate-900 leading-tight hover:text-eticentro-blue cursor-pointer uppercase">${p.name}</h3>
+                    <p class="text-[10px] text-slate-500 mt-1.5 leading-snug line-clamp-2 h-7">${p.description}</p>
+                    
+                    <!-- Uline Style Bulk Pricing Table -->
+                    <div class="mt-4 border border-slate-200 rounded text-[10px] bg-slate-50">
+                        <div class="grid grid-cols-2 border-b border-slate-200 bg-slate-100 font-bold px-2 py-1 text-slate-600">
+                            <span>CANTIDAD</span>
+                            <span class="text-right">UNITARIO</span>
+                        </div>
+                        <div class="grid grid-cols-2 px-2 py-1 border-b border-slate-100 text-slate-700">
+                            <span>1 - ${p.wholesaleQty - 1} ${p.unit}(s)</span>
+                            <span class="text-right font-semibold text-slate-900">$${p.price} MXN</span>
+                        </div>
+                        <div class="grid grid-cols-2 px-2 py-1 text-green-700 font-bold bg-green-50/50">
+                            <span>${p.wholesaleQty}+ ${p.unit}(s)</span>
+                            <span class="text-right">$${p.wholesalePrice} MXN</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mt-4 pt-3 border-t border-slate-100">
-                    <!-- Pricing levels -->
-                    <div class="space-y-0.5">
-                        <div class="flex items-baseline justify-between">
-                            <span class="text-[10px] text-slate-500 font-medium">Menudeo:</span>
-                            <span class="font-black text-sm text-slate-900">$${product.price} MXN</span>
-                        </div>
-                        <div class="flex items-baseline justify-between text-green-600 font-bold bg-green-50 px-2 py-0.5 rounded-lg border border-green-100/50">
-                            <span class="text-[9px] uppercase tracking-wider">Mayoreo (${product.wholesaleQty}+ pzs):</span>
-                            <span class="text-xs font-black">$${product.wholesalePrice} MXN</span>
-                        </div>
-                    </div>
-
-                    <button onclick="addToCart(${product.id})" class="w-full mt-4 bg-eticentro-blue hover:bg-eticentro-dark text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2 transform active:scale-95 shadow-sm">
-                        <i class="fas fa-cart-plus"></i> Agregar
+                    <button onclick="addToCart(${p.id})" class="w-full bg-eticentro-blue hover:bg-eticentro-dark text-white font-bold py-2 rounded text-xs transition-all flex items-center justify-center gap-2 transform active:scale-95 uppercase tracking-wider">
+                        <i class="fas fa-plus text-[10px]"></i> Agregar al Pedido
                     </button>
                 </div>
             `;
             return card;
         }
 
-        // Create high-visibility card for kits/bundles
-        function createBundleCard(product) {
+        // Beautiful Bundle Box
+        function createBundleCard(p) {
             const card = document.createElement('div');
-            card.className = "bg-gradient-to-br from-white to-slate-50 rounded-3xl p-6 border-2 border-eticentro-blue/20 shadow-md hover:shadow-xl transition-all flex flex-col justify-between relative overflow-hidden group col-span-1";
+            card.className = "bg-white border-2 border-eticentro-blue/60 p-5 flex flex-col justify-between hover:border-eticentro-blue transition-colors duration-150 uline-grid-border col-span-1 rounded-md relative";
             
             card.innerHTML = `
-                <div class="absolute top-0 right-0 w-24 h-24 bg-eticentro-blue/5 rounded-full -mr-8 -mt-8 flex items-center justify-center"></div>
+                <span class="absolute top-2 right-2 bg-eticentro-accent text-white text-[9px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                    PAQUETE COMBO
+                </span>
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="bg-eticentro-accent text-white text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-widest">
-                            🔥 KIT ESPECIAL
-                        </span>
-                        <span class="bg-eticentro-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                            Empaque Completo
-                        </span>
+                    <div class="text-[9px] text-slate-400 font-bold uppercase tracking-wider mb-1">
+                        EMPRENDEDOR STARTER
                     </div>
 
-                    <div class="h-28 bg-white rounded-2xl flex items-center justify-center mb-4 border border-slate-100 shadow-sm group-hover:scale-105 transition-transform duration-300">
-                        <i class="fas fa-boxes-stacked text-eticentro-accent text-5xl"></i>
+                    <div class="h-40 bg-white flex items-center justify-center p-2 mb-4 border border-slate-100 rounded">
+                        <img src="${p.image}" alt="${p.name}" class="h-full w-full object-contain mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/400x300/ffffff/004B87?text=EtiCentro+Kit';">
                     </div>
 
-                    <h3 class="font-black text-base text-slate-900 leading-tight">${product.name}</h3>
-                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">${product.description}</p>
-                </div>
-
-                <div class="mt-6 pt-4 border-t border-slate-200">
-                    <div class="flex items-end justify-between">
-                        <div>
-                            <span class="text-[10px] text-slate-500 font-bold block uppercase tracking-wider">Precio Individual:</span>
-                            <div class="flex items-center gap-2">
-                                <span class="text-xl font-black text-eticentro-blue">$${product.price} MXN</span>
-                                <span class="text-xs text-green-600 font-extrabold bg-green-50 px-1.5 py-0.5 rounded border border-green-100">Mayoreo $${product.wholesalePrice} (${product.wholesaleQty}+)</span>
-                            </div>
+                    <h3 class="font-extrabold text-sm text-slate-900 uppercase leading-snug">${p.name}</h3>
+                    <p class="text-xs text-slate-600 mt-1 leading-snug h-12 overflow-hidden">${p.description}</p>
+                    
+                    <!-- Structured Prices -->
+                    <div class="mt-4 border border-slate-200 rounded text-xs bg-slate-50">
+                        <div class="grid grid-cols-2 border-b border-slate-200 bg-slate-100 font-bold px-2.5 py-1 text-slate-600">
+                            <span>CANTIDAD</span>
+                            <span class="text-right">UNITARIO</span>
+                        </div>
+                        <div class="grid grid-cols-2 px-2.5 py-1.5 border-b border-slate-100 text-slate-700">
+                            <span>Menudeo regular</span>
+                            <span class="text-right font-bold text-slate-900">$${p.price} MXN</span>
+                        </div>
+                        <div class="grid grid-cols-2 px-2.5 py-1.5 text-green-700 font-bold bg-green-50/50">
+                            <span>Mayoreo (${p.wholesaleQty}+ kits)</span>
+                            <span class="text-right">$${p.wholesalePrice} MXN</span>
                         </div>
                     </div>
+                </div>
 
-                    <button onclick="addToCart(${product.id})" class="w-full mt-4 bg-eticentro-accent hover:bg-opacity-95 text-white font-black py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2 transform active:scale-95 shadow-md shadow-eticentro-accent/10">
-                        <i class="fas fa-shopping-cart"></i> Agregar Paquete
+                <div class="mt-5">
+                    <button onclick="addBundleToCart(${p.id})" class="w-full bg-eticentro-accent hover:bg-red-700 text-white font-black py-2.5 rounded text-xs transition-all flex items-center justify-center gap-2 transform active:scale-95 uppercase tracking-wider shadow-sm">
+                        <i class="fas fa-cart-plus"></i> Agregar Kit Completo
                     </button>
                 </div>
             `;
             return card;
         }
 
-        // Add special bundle to cart with prompt
         function addBundleToCart(bundleId) {
             addToCart(bundleId);
             toggleCart(true);
         }
 
-        // Handle Active Category Navigation Tabs
         function selectCategory(category) {
             activeCategory = category;
             
-            // Reset active styles on tabs
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.className = "cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 text-slate-600 hover:bg-slate-200";
+                btn.className = "cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 text-slate-700 hover:bg-slate-200 border border-slate-200 bg-white";
             });
 
-            // Set current tab style
             const activeBtn = document.getElementById(`catBtn-${category}`);
             if (activeBtn) {
-                activeBtn.className = "cat-btn px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 bg-eticentro-blue text-white";
+                activeBtn.className = "cat-btn px-4 py-1.5 rounded-md text-xs font-bold transition-all duration-150 bg-eticentro-blue text-white shadow-sm border border-transparent";
             }
 
-            // Update Titles dynamically
             const mainTitle = document.getElementById('sectionTitle');
             const mainSubtitle = document.getElementById('sectionSubtitle');
             
             switch (category) {
                 case 'all':
-                    mainTitle.innerHTML = '⭐ Todos los Productos';
-                    mainSubtitle.innerText = 'Explora nuestra amplia gama de insumos de empaque de alta calidad.';
+                    mainTitle.innerHTML = '📂 Todos los Productos';
+                    mainSubtitle.innerText = 'Mostrando inventario oficial de EtiCentro Hermosillo con escala de precios mayoristas.';
                     break;
                 case 'bundles':
                     mainTitle.innerHTML = '📦 Paquetes Emprendedor (Bundles)';
-                    mainSubtitle.innerText = 'Soluciones todo en uno diseñadas con precios especiales para optimizar tus envíos.';
+                    mainSubtitle.innerText = 'Soluciones agrupadas todo en uno con cotizaciones especiales preconfiguradas.';
                     break;
                 case 'etiquetas':
-                    mainTitle.innerHTML = '🏷️ Etiquetas Autoadheribles y Ribbons';
-                    mainSubtitle.innerText = 'Térmicas directas, semigloss, plásticas BOPP y cintas de impresión de alta definición.';
+                    mainTitle.innerHTML = '🏷️ Etiquetas Autoadheribles, Sobres y Ribbons';
+                    mainSubtitle.innerText = 'Etiquetas térmicas de envío, bolsas acolchadas con burbuja y cintas de impresión.';
                     break;
                 case 'empaque':
-                    mainTitle.innerHTML = '🎗️ Insumos de Empaque y Flejado';
-                    mainSubtitle.innerText = 'Cintas Tuk/Navitek, stretch film de varias medidas y herramientas de flejado profesional.';
+                    mainTitle.innerHTML = '🎗️ Insumos de Empaque, Burbuja y Flejado';
+                    mainSubtitle.innerText = 'Películas estirables stretch film, cintas adhesivas Tuk/Navitek y esquineros protectores.';
                     break;
                 case 'logistica':
-                    mainTitle.innerHTML = '🪵 Almacén, Logística e Industrial';
-                    mainSubtitle.innerText = 'Tarimas de madera con tratamiento térmico, bolsas en rollo, equipo de protección y señalización.';
+                    mainTitle.innerHTML = '🪵 Almacenamiento, Logística e Industrial';
+                    mainSubtitle.innerText = 'Tarimas de pino certificadas para exportación, señales viales y de protección civil.';
                     break;
                 case 'promocionales':
-                    mainTitle.innerHTML = '👕 Impresiones DTF y Artículos Promocionales';
-                    mainSubtitle.innerText = 'Viste tu negocio con playeras, gorras, lonas de publicidad y grabado láser en termos.';
+                    mainTitle.innerHTML = '👕 Promocionales e Identidad de Empresa';
+                    mainSubtitle.innerText = 'Gorras bordadas o estampadas con técnica de alta fijación y termos grabados.';
                     break;
             }
 
             renderCatalog();
         }
 
-        // Search engine inputs filters
         function filterProducts() {
-            // Match inputs so searching works on both desktop and mobile
-            const val = document.getElementById('searchInput').value;
-            document.getElementById('mobileSearchInput').value = val;
-            renderCatalog();
-        }
-
-        function filterProductsMobile() {
-            const val = document.getElementById('mobileSearchInput').value;
-            document.getElementById('searchInput').value = val;
             renderCatalog();
         }
 
@@ -973,17 +718,13 @@
 
         function resetSearch() {
             document.getElementById('searchInput').value = '';
-            document.getElementById('mobileSearchInput').value = '';
             selectCategory('all');
         }
 
-        // Scroll helper
         function scrollToCatalog() {
             document.getElementById('sectionTitle').scrollIntoView({ behavior: 'smooth' });
         }
 
-
-        // CART MANIPULATION OPERATIONS
         function addToCart(productId) {
             const product = productsDB.find(p => p.id === productId);
             if (!product) return;
@@ -1019,7 +760,6 @@
             updateCartUI();
         }
 
-        // Calculate and Draw everything in the Cart slideover
         function updateCartUI() {
             const cartItemsList = document.getElementById('cartItemsList');
             const cartCountBadge = document.getElementById('cartCountBadge');
@@ -1030,14 +770,14 @@
 
             if (cart.length === 0) {
                 cartItemsList.innerHTML = `
-                    <div class="flex flex-col items-center justify-center py-20 text-center">
-                        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-xl mb-4">
+                    <div class="flex flex-col items-center justify-center py-20 text-center bg-white rounded border border-slate-200">
+                        <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 text-xl mb-4 border border-slate-200/50">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
-                        <h4 class="font-extrabold text-sm text-slate-700">Tu carrito está vacío</h4>
-                        <p class="text-xs text-slate-400 mt-1 max-w-[200px]">Navega por nuestro catálogo y añade los insumos que requieres.</p>
-                        <button onclick="toggleCart(false)" class="mt-4 bg-eticentro-blue text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-eticentro-dark transition-colors">
-                            Seguir Comprando
+                        <h4 class="font-bold text-sm text-slate-700 uppercase">El Pedido está Vacío</h4>
+                        <p class="text-[11px] text-slate-400 mt-1 max-w-[200px]">Navega por las categorías industriales y añade productos para cotizar.</p>
+                        <button onclick="toggleCart(false)" class="mt-4 bg-eticentro-blue text-white text-xs font-bold px-4 py-2 rounded hover:bg-eticentro-dark transition-colors uppercase tracking-wider">
+                            Cerrar
                         </button>
                     </div>
                 `;
@@ -1049,7 +789,6 @@
                 return;
             }
 
-            // Total counters
             let totalQty = 0;
             let totalRetailValue = 0;
             let finalCalculatedTotal = 0;
@@ -1060,7 +799,6 @@
                 const qty = item.quantity;
                 totalQty += qty;
 
-                // Determine if wholesale threshold is met
                 const isWholesaleActive = qty >= p.wholesaleQty;
                 const activeUnitPrice = isWholesaleActive ? p.wholesalePrice : p.price;
                 
@@ -1074,65 +812,62 @@
                     showGlobalWholesaleCongrats = true;
                 }
 
-                // UI calculations for progress to wholesale tier
                 let progressMessage = "";
                 if (!isWholesaleActive) {
                     const remaining = p.wholesaleQty - qty;
                     progressMessage = `
-                        <div class="mt-1.5 text-[10px] text-eticentro-blue font-semibold flex items-center gap-1">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Agrega <strong class="font-bold underline">${remaining} piezas más</strong> para activar precio Mayoreo.</span>
+                        <div class="mt-1 text-[9px] text-eticentro-blue font-bold flex items-center gap-1 bg-slate-100 p-1 rounded border border-slate-200/50">
+                            <i class="fas fa-arrow-up text-[8px]"></i>
+                            <span>Agrega ${remaining} ${p.unit}(s) más para tarifa de MAYORISTA.</span>
                         </div>
                     `;
                 } else {
                     progressMessage = `
-                        <div class="mt-1.5 text-[10px] text-green-600 font-extrabold uppercase tracking-wide flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                            ¡Precio de Mayoreo Activado!
+                        <div class="mt-1 text-[9px] text-green-700 font-bold uppercase tracking-wider flex items-center gap-1 bg-green-50 p-1 rounded border border-green-200/50">
+                            <i class="fas fa-check-circle text-[8px]"></i>
+                            <span>Tarifa Mayorista Activada</span>
                         </div>
                     `;
                 }
 
-                // Render Item row inside Drawer
                 const itemRow = document.createElement('div');
-                itemRow.className = "bg-slate-50 rounded-2xl p-4 border border-slate-200/80 space-y-3 relative overflow-hidden group";
+                itemRow.className = "bg-white rounded p-4 border border-slate-200 shadow-sm space-y-2 relative";
                 
-                // Small indicator of wholesale on card background
                 if (isWholesaleActive) {
-                    itemRow.classList.add('border-green-300', 'bg-green-50/20');
+                    itemRow.classList.add('border-green-400');
                 }
 
                 itemRow.innerHTML = `
                     <div class="flex items-start justify-between gap-3">
                         <div class="flex items-center gap-2.5">
-                            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-slate-200 text-slate-500 shadow-sm">
-                                <i class="fas ${p.isBundle ? 'fa-boxes-stacked text-eticentro-accent' : 'fa-cube text-eticentro-blue'}"></i>
+                            <div class="w-12 h-12 bg-white rounded border border-slate-200 p-1 flex items-center justify-center">
+                                <img src="${p.image}" class="h-full object-contain mix-blend-multiply">
                             </div>
                             <div>
-                                <h4 class="font-bold text-xs text-slate-800 line-clamp-1">${p.name}</h4>
-                                <p class="text-[10px] text-slate-400 font-medium">Unidad: ${p.unit}</p>
+                                <h4 class="font-bold text-xs text-slate-800 line-clamp-1 uppercase">${p.name}</h4>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase">Empaque: ${p.unit}</p>
                             </div>
                         </div>
-                        <button onclick="removeItemFromCart(${p.id})" class="text-slate-400 hover:text-red-500 transition-colors p-1">
+                        <button onclick="removeItemFromCart(${p.id})" class="text-slate-400 hover:text-red-600 transition-colors">
                             <i class="fas fa-trash-alt text-xs"></i>
                         </button>
                     </div>
 
                     <div class="flex items-center justify-between pt-2 border-t border-slate-100">
                         <!-- Qty Controls -->
-                        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-lg p-1">
-                            <button onclick="changeCartQty(${p.id}, -1)" class="w-5 h-5 flex items-center justify-center rounded bg-slate-100 hover:bg-slate-200 text-slate-600 font-black text-xs active:scale-90">-</button>
-                            <span class="text-xs font-black text-slate-800 px-1 w-6 text-center">${qty}</span>
-                            <button onclick="changeCartQty(${p.id}, 1)" class="w-5 h-5 flex items-center justify-center rounded bg-slate-100 hover:bg-slate-200 text-slate-600 font-black text-xs active:scale-90">+</button>
+                        <div class="flex items-center gap-1 bg-slate-50 border border-slate-300 rounded p-0.5">
+                            <button onclick="changeCartQty(${p.id}, -1)" class="w-5 h-5 flex items-center justify-center rounded bg-white border border-slate-200 text-slate-600 font-bold text-xs active:scale-90">-</button>
+                            <span class="text-xs font-bold text-slate-800 px-1 w-6 text-center">${qty}</span>
+                            <button onclick="changeCartQty(${p.id}, 1)" class="w-5 h-5 flex items-center justify-center rounded bg-white border border-slate-200 text-slate-600 font-bold text-xs active:scale-90">+</button>
                         </div>
 
                         <!-- Price display -->
                         <div class="text-right">
                             ${isWholesaleActive ? `
                                 <span class="text-[9px] text-slate-400 line-through block">$${itemRetailTotal} MXN</span>
-                                <span class="text-xs font-black text-green-600 block">$${itemCalculatedTotal} MXN</span>
+                                <span class="text-xs font-bold text-green-700 block">$${itemCalculatedTotal} MXN</span>
                             ` : `
-                                <span class="text-xs font-black text-slate-800 block">$${itemCalculatedTotal} MXN</span>
+                                <span class="text-xs font-bold text-slate-800 block">$${itemCalculatedTotal} MXN</span>
                             `}
                         </div>
                     </div>
@@ -1141,14 +876,12 @@
                 cartItemsList.appendChild(itemRow);
             });
 
-            // Update Global Values
             cartCountBadge.classList.remove('hidden');
             cartCountBadge.innerText = totalQty;
 
             document.getElementById('retailSubtotalValue').innerText = `$${totalRetailValue.toFixed(2)} MXN`;
             document.getElementById('totalValue').innerText = `$${finalCalculatedTotal.toFixed(2)} MXN`;
 
-            // Calculate total global savings from retail vs wholesale pricing applied
             const totalSavings = totalRetailValue - finalCalculatedTotal;
             if (totalSavings > 0) {
                 savingsRow.classList.remove('hidden');
@@ -1157,7 +890,6 @@
                 savingsRow.classList.add('hidden');
             }
 
-            // Global banners
             if (showGlobalWholesaleCongrats) {
                 cartSavingsBanner.classList.remove('hidden');
             } else {
@@ -1165,21 +897,18 @@
             }
         }
 
-        // Open/Close Cart Drawer
         function toggleCart(isOpen) {
             const drawer = document.getElementById('cartDrawer');
             if (isOpen) {
                 drawer.classList.remove('hidden');
-                // Auto focus Name field for better UX
                 setTimeout(() => {
                     document.getElementById('clientName').focus();
-                }, 300);
+                }, 200);
             } else {
                 drawer.classList.add('hidden');
             }
         }
 
-        // Dropdown interactive show/hide address
         function toggleAddressField() {
             const method = document.getElementById('deliveryMethod').value;
             const addressField = document.getElementById('addressField');
@@ -1191,35 +920,33 @@
             }
         }
 
-
-        // ORDER TELEMETRY & WHATSAPP TRANSMISSION
+        // WhatsApp transmission
         function dispatchOrder() {
             const name = document.getElementById('clientName').value.trim();
             const deliveryMethod = document.getElementById('deliveryMethod').value;
             const address = document.getElementById('deliveryAddress').value.trim();
 
             if (!name) {
-                showToast("Faltan Datos", "Por favor ingresa tu Nombre o Empresa para continuar.", "warning");
+                showToast("Faltan Datos", "Ingresa tu nombre o razón social para registrar tu pedido.", "warning");
                 document.getElementById('clientName').focus();
                 return;
             }
 
             if (deliveryMethod === 'shipping' && !address) {
-                showToast("Dirección Faltante", "Escribe la dirección de entrega de tus insumos.", "warning");
+                showToast("Falta Dirección", "Por favor ingresa los detalles del domicilio para el envío.", "warning");
                 document.getElementById('deliveryAddress').focus();
                 return;
             }
 
-            // Build beautifully structured WhatsApp text
-            let msg = `🔵 *PEDIDO NUEVO - ETICENTRO HERMOSILLO* 🔵\n\n`;
-            msg += `👤 *Cliente/Empresa:* ${name}\n`;
-            msg += `📍 *Método de Entrega:* ${deliveryMethod === 'pickup' ? 'Recoger en Sucursal (Hermosillo, Col. Loma Linda)' : 'Envío Local/Nacional (Por cotizar)'}\n`;
+            let msg = `🔵 *SOLICITUD DE COTIZACIÓN - ETICENTRO* 🔵\n\n`;
+            msg += `👤 *Cliente / Empresa:* ${name}\n`;
+            msg += `📍 *Método de Despacho:* ${deliveryMethod === 'pickup' ? 'Recoge en Bodega (Hermosillo)' : 'Envío por fletera contratada'}\n`;
             
             if (deliveryMethod === 'shipping') {
-                msg += `🏠 *Dirección de Envío:* ${address}\n`;
+                msg += `🏠 *Dirección:* ${address}\n`;
             }
             
-            msg += `\n📦 *DETALLE DEL PEDIDO:*\n`;
+            msg += `\n📦 *DETALLE DE INSUMOS SOLICITADOS:*\n`;
             msg += `-------------------------------------------\n`;
 
             let subtotalMenudeo = 0;
@@ -1235,41 +962,38 @@
                 subtotalMenudeo += p.price * qty;
                 subtotalFinal += lineTotal;
 
-                msg += `${index + 1}. *${p.name}*\n`;
+                msg += `${index + 1}. *${p.name.toUpperCase()}*\n`;
                 msg += `   Cantidad: ${qty} ${p.unit}(s)\n`;
                 msg += `   Precio unitario: $${unitPrice} MXN ${isWholesale ? '*(¡MAYOREO!)*' : '*(Menudeo)*'}\n`;
-                msg += `   Total artículo: $${lineTotal} MXN\n\n`;
+                msg += `   Subtotal: $${lineTotal} MXN\n\n`;
             });
 
             msg += `-------------------------------------------\n`;
-            msg += `💰 *Subtotal Menudeo:* $${subtotalMenudeo.toFixed(2)} MXN\n`;
+            msg += `💰 *Subtotal regular:* $${subtotalMenudeo.toFixed(2)} MXN\n`;
             
             const totalSavings = subtotalMenudeo - subtotalFinal;
             if (totalSavings > 0) {
-                msg += `🎁 *Descuento de Mayoreo:* -$${totalSavings.toFixed(2)} MXN\n`;
+                msg += `🎁 *Descuento por Volumen:* -$${totalSavings.toFixed(2)} MXN\n`;
             }
             
-            msg += `💵 *TOTAL NETO ESTIMADO:* $${subtotalFinal.toFixed(2)} MXN\n\n`;
-            msg += `*Nota:* Deseo coordinar detalles de pago, facturación y tiempo de entrega por este chat.`;
+            msg += `💵 *TOTAL ESTIMADO:* $${subtotalFinal.toFixed(2)} MXN\n\n`;
+            msg += `*Nota:* Deseo recibir opciones de facturación, cuenta para transferencia y coordinar los tiempos de despacho.`;
 
-            // WhatsApp link encoding
             const businessNumber = "526623530191";
             const encodedText = encodeURIComponent(msg);
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${businessNumber}&text=${encodedText}`;
 
-            // Reset cart on successful forward and direct user to WhatsApp link
-            showToast("Redireccionando...", "Estamos abriendo WhatsApp para enviar tu pedido.", "success");
+            showToast("Redireccionando...", "Abriendo enlace de WhatsApp con tu pedido.", "success");
             
             setTimeout(() => {
                 window.open(whatsappUrl, '_blank');
-                // Clean cart after initiating purchase
                 cart = [];
                 updateCartUI();
                 toggleCart(false);
-            }, 1500);
+            }, 1000);
         }
 
-        // Custom high quality notification system helper
+        // Custom alert toast helper
         function showToast(title, message, type = "success") {
             const toast = document.getElementById('toast');
             const toastTitle = document.getElementById('toastTitle');
@@ -1280,22 +1004,20 @@
             toastMsg.innerText = message;
 
             if (type === "success") {
-                toastIcon.className = "w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm shadow-md";
+                toastIcon.className = "w-7 h-7 rounded-full bg-[#25D366] text-white flex items-center justify-center text-xs shadow-md";
                 toastIcon.innerHTML = `<i class="fas fa-check"></i>`;
             } else if (type === "warning") {
-                toastIcon.className = "w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm shadow-md";
+                toastIcon.className = "w-7 h-7 rounded-full bg-[#E01A22] text-white flex items-center justify-center text-xs shadow-md";
                 toastIcon.innerHTML = `<i class="fas fa-exclamation-triangle"></i>`;
             }
 
-            // Slide up toast animation
             toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
             toast.classList.add('translate-y-0', 'opacity-100');
 
-            // Slide back down automatically after 3.5 seconds
             setTimeout(() => {
                 toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
                 toast.classList.remove('translate-y-0', 'opacity-100');
-            }, 3500);
+            }, 3000);
         }
     </script>
 </body>
